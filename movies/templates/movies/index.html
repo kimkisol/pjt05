@@ -1,0 +1,126 @@
+{% extends 'base.html' %}
+{% load bootstrap5 %}
+{% block css %}
+  <style>
+  .card-body .card-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 75px;
+    display:-webkit-box; 
+    word-wrap:break-word; 
+    -webkit-line-clamp:3; 
+    -webkit-box-orient:vertical; 
+  }
+  .pagination > li > a
+  {
+      background-color: white;
+      color: #5A4181;
+  }
+
+  .pagination > li > a:focus,
+  .pagination > li > a:hover,
+  .pagination > li > span:focus,
+  .pagination > li > span:hover
+  {
+      color: #5a5a5a;
+      background-color: #eee;
+      border-color: #ddd;
+  }
+
+  .pagination > .active > a
+  {
+      color: white;
+      background-color: #CD5C5C !Important;
+      border: solid 1px #CD5C5C !Important;
+  }
+
+  .pagination > .active > a:hover
+  {
+      background-color: #CD5C5C !Important;
+      border: solid 1px #CD5C5C;
+  }
+  </style>
+
+{% endblock  %}
+{% block content %}
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+  {% for movie in page_obj %}
+    <div class="col">
+      <div class="card">
+        <a href="{% url 'movies:detail' movie.pk %}">
+          <img src="{{ movie.poster_path }}" class="card-img-top" alt="{{ movie.title }}">
+        </a>
+        <a href="{% url 'movies:detail' movie.pk %}" class="text-decoration-none text-dark">
+          <div class="card-body" height="100px">
+            <h4 class="card-title">{{ movie.title }}</h4>
+            <p class="card-text text-secondary">{{ movie.overview }}</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
+<div class="d-flex justify-content-center m-5">
+  {% bootstrap_pagination page_obj %} 
+</div>
+
+{% endblock  %}
+
+
+
+{% comment %} <div class="row row-cols-1 row-cols-md-3 g-4">
+{% for movie in page_obj %}
+  <div class="col">
+    <div class="card">
+      <img src="{{ movie.poster_path }}" class="card-img-top" alt="{{ movie.title }}">
+      <div class="card-body">
+        <h5 class="card-title">{{ movie.title }}</h5>
+        <p class="card-text">{{ movie.overview }}</p>
+      </div>
+    </div>
+  </div>
+{% endfor %}
+
+
+
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+  <div class="col">
+    <div class="card">
+      <img src="..." class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card">
+      <img src="..." class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card">
+      <img src="..." class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card">
+      <img src="..." class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+      </div>
+    </div>
+  </div>
+</div> {% endcomment %}

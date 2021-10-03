@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load bootstrap5 %}
+
+{% block content %}
+<form action="" method="POST">
+  {% csrf_token %}
+  {% bootstrap_form form %}
+  <div class="d-flex justify-content-end">
+    <button class="btn btn-danger m-2">SUBMIT</button>
+    <a href="{% url 'movies:index' %}">
+      <button class="btn btn-secondary">CANCLE</button>
+    </a>
+  </div>
+</form>
+
+{% endblock  %}

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<a href="{% url 'movies:index' %}" class="m-1 text-decoration-none text-secondary">
+  <h5 class="">
+  <-BACK
+  </h5>
+</a>
+<div class="d-flex">
+  <img src="{{ movie.poster_path }}" alt="movie" width="400px">
+  <div class="d-flex flex-column container m-3 justify-content-between">
+    <div>
+      <h1 class="mb-3 ms-3">{{ movie.title }}</h1>
+      <p class="mb-1 text-secondary ms-3">Created at : {{ movie.created_at }}</p>
+      <p class="mb-4 text-secondary ms-3">Updated at : {{ movie.updated_at }}</p>
+      <div class="bg-light p-4 rounded-3">
+        <p>{{ movie.overview|linebreaksbr }}</p>
+      </div>
+    </div>
+    <div class="d-flex justify-content-end mt-5">
+      <a href="{% url 'movies:update' movie.pk %}" class="m-1">
+        <button class="btn btn-danger">EDIT</button>
+      </a>
+      <form action="{% url 'movies:delete' movie.pk %}" method="POST" class="m-1">
+        {% csrf_token %}
+        <button class="btn btn-secondary">DELETE</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock  %}
